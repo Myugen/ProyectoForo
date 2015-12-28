@@ -26,7 +26,7 @@ else {
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jsfile"></script>
+    <script type="text/javascript" src="../scripts/validaciones.js"></script>
     <title>Editar opinión - MiForo</title>
 </head>
 <body>
@@ -78,7 +78,7 @@ else {
 	    		<div class="panel panel-warning">
   					<div class="panel-heading">Editar opinión</div>
   					<div class="panel-body">
-    					<form action="resultado_editar_opinion.php<?php echo "?idTema=$idTema&idOpinion=$idOpinion" ?>"  method="post" role="form">
+    					<form action="resultado_editar_opinion.php<?php echo "?idTema=$idTema&idOpinion=$idOpinion" ?>" onsubmit="return validarFormulario(this)" method="post" role="form">
 							<label for="textAreaComentario">Comentario:</label>
 							<textarea name="mensaje" id="textAreaComentario" cols="30" rows="10" class="form-control"></textarea><br>
 							<button type="submit" class="btn btn-warning">

@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url(../assets/HelveticaNeue/HelveticaNeue.otf);
+}
+
+* {
+    font-family: "HelveticaNeue";
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+}
+
+div {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav
+
+textarea {
+    resize: none;
+}

@@ -25,7 +25,7 @@ else {
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jsfile"></script>
+    <script type="text/javascript" src="../scripts/validaciones.js"></script>
     <title>Editar tema - MiForo</title>
 </head>
 <body>
@@ -77,7 +77,7 @@ else {
 	    		<div class="panel panel-warning">
   					<div class="panel-heading">Editar tema</div>
   					<div class="panel-body">
-    					<form action="resultado_editar_tema.php?idTema=<?php echo $idTema?>" method="post" role="form">
+    					<form action="resultado_editar_tema.php?idTema=<?php echo $idTema?>" onsubmit="return validarFormulario(this)" method="post" role="form">
 							<label for="textBoxTema">Título:</label>
 							<input type="text" name="titulo" id="textBoxTema" class="form-control"/><br>
 							<button type="submit" class="btn btn-warning">

@@ -24,7 +24,7 @@ else {
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jsfile"></script>
+    <script type="text/javascript" src="../scripts/validaciones.js"></script>
     <title>Nuevo tema - MiForo</title>
 </head>
 <body>
@@ -76,7 +76,7 @@ else {
 	    		<div class="panel panel-primary">
   					<div class="panel-heading">Nuevo tema</div>
   					<div class="panel-body">
-    					<form action="resultado_crear_tema.php" method="post" role="form">
+    					<form action="resultado_crear_tema.php" onsubmit="return validarFormulario(this)" method="post" role="form">
 							<label for="textBoxTema">Título:</label>
 							<input type="text" name="titulo" id="textBoxTema" class="form-control"/><br>
 							<button type="submit" class="btn btn-success">

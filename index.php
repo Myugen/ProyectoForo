@@ -15,6 +15,11 @@ else {
 <html lang="es-ES">
 <head>
     <meta charset="UTF-8">
+    <!-- Font Awesone Icons -->
+    <link rel="stylesheet" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilo/main.css">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -26,14 +31,14 @@ else {
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jsfile"></script>
+    <script type="text/javascript" src="scripts/validaciones.js"></script>
     <title>Inicio - MiForo</title>
 </head>
 <body>
     <div class="container">
     	<div class="row">
     	<nav class="navbar navbar-fixed-top navbar-inverse">
-    		<a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+    		<a class="navbar-brand" href="index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
     			MiForo
     		</a>
   			<ul class="nav navbar-nav navbar-left">
@@ -80,7 +85,7 @@ else {
 	    		<div class="panel panel-primary">
   					<div class="panel-heading">Inicie sesión</div>
   					<div class="panel-body">
-    					<form action="autenticacion/resultado_autenticacion.php" method="post" role="form">
+    					<form action="autenticacion/resultado_autenticacion.php" method="post" onsubmit="return validarFormulario(this)" role="form">
 							<label for="textBoxUsuario">Usuario:</label>
 							<input type="text" name="userIn" id="textBoxUsuario" class="form-control"/><br>
 							<label for="textBoxPassword">Contraseña:</label>
@@ -97,11 +102,11 @@ else {
 		    	<div class="panel panel-success">
 	  				<div class="panel-heading"><b>O bien, cree su cuenta</b></div>
 	  				<div class="panel-body">
-	    				<form action="autenticacion/crear_cuenta.php" method="post" role="form">
+	    				<form action="autenticacion/crear_cuenta.php" id="registroCuenta" onsubmit="return validarFormulario(this)" method="post" role="form">
 							<label for="textBoxUsuario">Usuario:</label>
 							<input type="text" name="userUp" id="textBoxUsuario" class="form-control"/><br>
-							<label for="textBoxPassword">Email:</label>
-							<input type="email" name="mailUp" id="textBoxPassword" class="form-control"/><br>
+							<label for="textBoxEmail">Email:</label>
+							<input type="email" name="mailUp" id="textBoxEmail" class="form-control"/><br>
 							<label for="textBoxPassword">Contraseña:</label>
 							<input type="password" name="passwordUp" id="textBoxPassword" class="form-control" aria-describedby="helpBlock"/><br>
 							<span id="helpBlock" class="help-block">

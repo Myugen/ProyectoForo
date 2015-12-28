@@ -24,7 +24,7 @@ else {
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jsfile"></script>
+    <script type="text/javascript" src="../scripts/validaciones.js"></script>
     <title>Panel de administración - MiForo</title>
 </head>
 <body>
@@ -76,7 +76,7 @@ else {
 	    		<div class="panel panel-warning">
   					<div class="panel-heading">Cambie su contraseña</div>
   					<div class="panel-body">
-    					<form action="resultado_cambiar_pass.php" method="post" role="form">
+    					<form action="resultado_cambiar_pass.php" method="post" onsubmit="return validarFormulario(this)" role="form">
 							<label for="textBoxUsuario">Usuario:</label>
 							<p class="form-control-static"><?php echo $usuario?></p><br>
 							<label for="textBoxPasswordOld">Contraseña actual:</label>
