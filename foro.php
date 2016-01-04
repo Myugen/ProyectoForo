@@ -26,46 +26,37 @@ else {
 <html lang="es-ES">
 <head>
     <meta charset="UTF-8">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jsfile"></script>
+    <!-- Font Awesone Icons -->
+    <link rel="stylesheet" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilo/main.css">
     <title>Foro - MiForo</title>
 </head>
 <body>
     <div class="container">
-    	<div class="row">
-    	<nav class="navbar navbar-fixed-top navbar-inverse">
-    		<a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+    	<div class="navmenu">
+    		<a class="logo" href="index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
     			MiForo
     		</a>
-  			<ul class="nav navbar-nav navbar-left">
-	    		<li class="nav-item">
-	      			<a class="nav-link" href="index.php">Inicio<span class="sr-only">(current)</span></a>
+  			<ul class="menu-izquierda">
+	    		<li>
+	      			<a href="index.php">Inicio</a>
 	    		</li>
-	    		<li class="nav-item active">
-	      			<a class="nav-link" href="foro.php">Foro</a>
+	    		<li class="activo">
+	      			<a href="foro.php">Foro</a>
 	    		</li>
     		</ul>
-    		<ul class="nav navbar-nav navbar-right">
+    		<ul class="menu-derecha">
     			<?php
     			//Mensaje especial en la zona de usuario
     			if($usuario == "anónimo")
-    				echo "<li class='nav-item' style='padding-right: 15px'><p class='navbar-text'>Bienvenido, $usuario</p></li>";
+    				echo "<li><p>Bienvenido, $usuario</p></li>";
     			else {
-    				echo "<li class='nav-item dropdown' style='padding-right: 15px'>
-    						<a id='dropdownMenu' class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-      							Bienvenido, $usuario<span class='caret'></span>
+    				echo "<li>
+    						<a id='dropdownMenu'>
+      							Bienvenido, $usuario &nbsp<span class='fa fa-caret-down'></span>
     						</a>
-							<ul class='dropdown-menu' aria-labelledby='dropdownMenu'>
+							<ul class='menu-oculto'>
     							<li><a href='administracion/cambiar_pass.php'>Cambiar contraseña</a></li>
     							<li><a href='administracion/cerrar_sesion.php'>Cerrar sesión</a></li>
   							</ul>
@@ -73,10 +64,9 @@ else {
     			}
     			?>
     		</ul>
-    	</nav>
     	</div>
-    	<div class="row" style="padding-top: 70px">
-    		<div class="col-md-12">
+    	<div style="padding-top: 70px">
+    		<div class="container">
     			<?php
     			$resultado = $conexion->query($peticion);
     			if(!$resultado) {
@@ -84,49 +74,51 @@ else {
     			}
     			else {
     				$numeroFilas = $resultado->num_rows;
-    				echo "<div class='panel panel-primary'>";
-    				echo "<div class='panel-heading'>
-    						<div class='row'>
-    						<div class='col-md-9'>
+    				echo "<div class='panel panel-principal'>";
+    				echo "<div class='panel-cabecera'>
+    						<div class='columna-3-4'>
     						Temas <span class='badge'>$numeroFilas</span>
     						</div>";
     				if($usuario != "anónimo") {
-    					echo "<div class='col-md-3 text-right'><a class='btn btn-primary' href='foro/crear_tema.php' role='button'>
-								<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
+    					echo "<div class='columna-1-4'><a href='foro/crear_tema.php'>
+                                <button class='boton-principal'>
+								<span class='fa fa-edit' aria-hidden='true'></span>
 								Nuevo tema
+                                </button>
 								</a></div>";
     				}
-    				echo "	</div>";
     				echo "</div>";
-    				echo "<ul class='list-group'>";
+    				echo "<ul class='lista'>";
     				if ($numeroFilas == 0) {
-    					echo "<li class='list-group-item list-group-warning'>No hay temas creados</li>";
+    					echo "<li class='lista-elemento list-group-warning'>No hay temas creados</li>";
     				}
     				else {
     					while($fila = $resultado->fetch_array()) {
-    						echo "<li class='list-group-item'>";
-    						echo "<div class='row'>";
-    						echo "<div class='col-md-6'>";
+    						echo "<li class='lista-elemento'>";
+    						echo "<div class='columna-1-2'>";
     						echo "<a href='foro/listado.php?idTema=" . $fila["idTema"] ."'>" . utf8_encode($fila["titulo"]) . "</a>";
     						echo "</div>";
-    						echo "<div class='col-md-3 text-center'>";
+    						echo "<div class='columna-1-4'>";
     						echo  "<span>Autor: <strong>". utf8_encode($fila["usuario"]) . "</strong></span>";
     						echo "</div>";
-    						echo "<div class='col-md-3' text-center>";
+    						echo "<div class='columna-1-4'>";
     						echo  "<span>Creado: <strong>". utf8_encode($fila["fecha"]) . "</strong></span>";
-    						echo "</div>";
     						echo "</div>";
     						if($id == $fila["idUsuario"] || $tipo == "administrador") {
     							echo "<hr>";
-	    						echo "<div class='row'>";
-	    						echo "<div class='col-md-12 text-right'>";
-	    						echo "<a class='btn btn-warning' href='foro/editar_tema.php?idTema=" . $fila["idTema"] . "' role='button'>
-										<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>&nbsp
+	    						echo "<div style='clear:both;'>";
+	    						echo "<div class='columna'>";
+	    						echo "<a href='foro/editar_tema.php?idTema=" . $fila["idTema"] . "'>
+                                        <button class='boton-aviso'>
+										<span class='fa fa-pencil' aria-hidden='true'></span>&nbsp
 										Editar título
+                                        </button>
 									  </a>&nbsp";
-	    						echo "<a class='btn btn-danger' href='foro/borrar_tema.php?idTema=" . $fila["idTema"] . "' role='button'>
-										<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>&nbsp
+	    						echo "<a href='foro/borrar_tema.php?idTema=" . $fila["idTema"] . "'>
+                                        <button class='boton-peligro'>
+										<span class='fa fa-remove' aria-hidden='true'></span>&nbsp
 										Eliminar tema
+                                        </button>
 									  </a>";
 	    						echo "</div>";
 	    						echo "</div>";
