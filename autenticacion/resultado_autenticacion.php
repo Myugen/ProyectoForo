@@ -47,6 +47,10 @@ else {
 	$tipo = $_SESSION["tipo"];
 	$id = $_SESSION["id"];
 }
+
+if($autenticacion) {
+    header("Location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es-ES">
@@ -120,6 +124,7 @@ else {
                 echo "<div class='alerta alerta-exito role='alert'>
                         <strong>¡Enhorabuena!</strong> Login correcto. <a href='../index.php' class='alerta-link'>Volver al índice</a>.
                       </div>";
+                header("Location: index.php");
             }
             ?>
         </div>

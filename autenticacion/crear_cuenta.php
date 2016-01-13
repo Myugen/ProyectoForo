@@ -58,6 +58,10 @@ else {
 	else
 		$camposRellenos = false;
 }
+
+if($creacion) {
+    header("Location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es-ES">

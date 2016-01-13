@@ -66,8 +66,11 @@ if(isset($_SESSION["usuario"]) && isset($_SESSION["tipo"])) {
 		$camposRellenos = false;
 }
 else {
-	header("Location: index.php");
+	header("Location: ../index.php");
 }
+
+if($update)
+    header("Location: ../index.php");
 ?>
 <!DOCTYPE html>
 <html lang="es-ES">
