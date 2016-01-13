@@ -15,21 +15,27 @@ else {
 <html lang="es-ES">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/rebel.png" />
     <!-- Font Awesone Icons -->
     <link rel="stylesheet" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="estilo/main.css">
     <!--SCRIPTS-->
     <script type="text/javascript" src="scripts/validaciones.js"></script>
+    <script type="text/javascript" src="scripts/menu.js"></script>
     <title>Inicio - MiForo</title>
 </head>
-<body>
+<body onload="cargar()">
     <div class="container">
     	<div class="navmenu">
+    	    <div class="menu-bar">
+    		    <a href="#" onclick="desplegarMenu()"><span class="fa fa-bars fa-fw"></span>&nbsp;Menú</a>
+    		</div>
     		<a class="logo" href="index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
     			MiForo
     		</a>
-  			<ul class="menu-izquierda">
+  			<ul class="menu-izquierda" id="menu">
 	    		<li class="activo">
 	      			<a href="index.php">Inicio</a>
 	    		</li>
@@ -71,9 +77,9 @@ else {
   					<div class="panel-cuerpo">
     					<form action="autenticacion/resultado_autenticacion.php" method="post" onsubmit="return validarFormulario(this)" role="form">
 							<label for="textBoxUsuario">Usuario:</label>
-							<input type="text" name="userIn" id="textBoxUsuario" class="form-control"/><br>
+							<input type="text" name="userIn" id="textBoxUsuario"/><br>
 							<label for="textBoxPassword">Contraseña:</label>
-							<input type="password" name="passwordIn" id="textBoxPassword" class="form-control"/><br>
+							<input type="password" name="passwordIn" id="textBoxPassword"/><br>
 							<button type="submit" class="boton-principal">
 								<span class="fa fa-user" aria-hidden="true"></span>
 								Iniciar sesión
@@ -88,11 +94,11 @@ else {
 	  				<div class="panel-cuerpo">
 	    				<form action="autenticacion/crear_cuenta.php" id="registroCuenta" onsubmit="return validarFormulario(this)" method="post" role="form">
 							<label for="textBoxUsuario">Usuario:</label>
-							<input type="text" name="userUp" id="textBoxUsuario" class="form-control"/><br>
+							<input type="text" name="userUp" id="textBoxUsuario"/><br>
 							<label for="textBoxEmail">Email:</label>
-							<input type="email" name="mailUp" id="textBoxEmail" class="form-control"/><br>
+							<input type="email" name="mailUp" id="textBoxEmail"/><br>
 							<label for="textBoxPassword">Contraseña:</label>
-							<input type="password" name="passwordUp" id="textBoxPassword" class="form-control" aria-describedby="helpBlock"/><br>
+							<input type="password" name="passwordUp" id="textBoxPassword" aria-describedby="helpBlock"/><br>
 							<span id="helpBlock" class="bloque-ayuda">
 								<span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
 								El password debe de contener entre <strong>7</strong> y <strong>15 caracteres</strong>. <br>

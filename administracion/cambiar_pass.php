@@ -12,21 +12,28 @@ else {
 <!DOCTYPE html>
 <html lang="es-ES">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/rebel.png" />
     <!-- Font Awesone Icons -->
     <link rel="stylesheet" href="../assets/font-awesome-4.5.0/css/font-awesome.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="../estilo/main.css">
-    <!--SCRIPTS-->
+    <!-- SCRIPTS -->
     <script type="text/javascript" src="../scripts/validaciones.js"></script>
+    <script type="text/javascript" src="../scripts/menu.js"></script>
     <title>Panel de administración - MiForo</title>
 </head>
-<body>
+<body onload="cargar()">
     <div class="container">
-        <div class="navmenu">
-            <a class="logo" href="../index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
+    	<div class="navmenu">
+    	    <div class="menu-bar">
+    		    <a href="#" onclick="desplegarMenu()"><span class="fa fa-bars fa-fw"></span>&nbsp;Menú</a>
+    		</div>
+    		<a class="logo" href="../index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
     			MiForo
     		</a>
-  			<ul class="menu-izquierda">
+  			<ul class="menu-izquierda" id="menu">
 	    		<li class="activo">
 	      			<a href="../index.php">Inicio</a>
 	    		</li>

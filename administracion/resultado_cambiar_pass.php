@@ -73,98 +73,91 @@ else {
 <html lang="es-ES">
 <head>
     <meta charset="UTF-8">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <title>Cambio de contraseña - MiForo</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/rebel.png" />
+    <!-- Font Awesone Icons -->
+    <link rel="stylesheet" href="../assets/font-awesome-4.5.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../estilo/main.css">
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="../scripts/validaciones.js"></script>
+    <script type="text/javascript" src="../scripts/menu.js"></script>
+    <title>Cambiar contraseña - MiForo</title>
 </head>
-<body>
+<body onload="cargar()">
     <div class="container">
-    	<div class="row">
-    	<nav class="navbar navbar-fixed-top navbar-inverse">
-    		<a class="navbar-brand" href="../index.php"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+    	<div class="navmenu">
+    	    <div class="menu-bar">
+    		    <a href="#" onclick="desplegarMenu()"><span class="fa fa-bars fa-fw"></span>&nbsp;Menú</a>
+    		</div>
+    		<a class="logo" href="../index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
     			MiForo
     		</a>
-  			<ul class="nav navbar-nav navbar-left">
-	    		<li class="nav-item active">
-	      			<a class="nav-link" href="../index.php">Inicio<span class="sr-only">(current)</span></a>
+  			<ul class="menu-izquierda" id="menu">
+	    		<li>
+	      			<a href="../index.php">Inicio</a>
 	    		</li>
-	    		<li class="nav-item">
-	      			<a class="nav-link" href="../foro.php">Foro</a>
+	    		<li>
+	      			<a href="../foro.php">Foro</a>
 	    		</li>
     		</ul>
-    		<ul class="nav navbar-nav navbar-right">
+    		<ul class="menu-derecha">
     			<?php
     			//Mensaje especial en la zona de usuario
     			if($usuario == "anónimo")
-    				echo "<li class='nav-item' style='padding-right: 15px'><p class='navbar-text'>Bienvenido, $usuario</p></li>";
+    				echo "<li><p>Bienvenido, $usuario</p></li>";
     			else {
-    				echo "<li class='nav-item dropdown' style='padding-right: 15px'>
-    						<a id='dropdownMenu' class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-								Bienvenido, $usuario<span class='caret'></span>
+    				echo "<li>
+    						<a id='dropdownMenu'>
+      							Bienvenido, $usuario &nbsp<span class='fa fa-caret-down'></span>
     						</a>
-							<ul class='dropdown-menu' aria-labelledby='dropdownMenu'>
-    							<li><a href='cambiar_pass.php'>Cambiar contraseña</a></li>
-    							<li><a href='cerrar_sesion.php'>Cerrar sesión</a></li>
+							<ul class='menu-oculto'>
+    							<li><a href='../administracion/cambiar_pass.php'>Cambiar contraseña</a></li>
+    							<li><a href='../administracion/cerrar_sesion.php'>Cerrar sesión</a></li>
   							</ul>
-    					</li>";
+    					  </li>";
     			}
     			?>
     		</ul>
-    	</nav>
     	</div>
-    	<div class="row" style="padding-top: 20px">
-    		<div class="page-header">
-    			<h1>Proceso de cambio de contraseña</h1>
-    			<small>La seguridad de usted ante todo.</small>
-    		</div>
-    	</div>
-    	<div class="row">
-	    	<div class="jumbotron">
-	    	<div class="container">
-	    		<?php
-	    		if(!$camposRellenos) {
-	    			echo "<div class='alert alert-warning' role='alert'>
-						  	<strong>¡Aviso!</strong> Asegúrese de no dejar campos vacíos. <a href='cambiar_pass.php' class='alert-link'>Volver al menú anterior</a>.
-						  </div>";
-	    		}
-	    		else if(!$autenticacion) {
-	    			echo "<div class='alert alert-danger' role='alert'>
-						  	<strong>¡Error!</strong> Combinación usuario/contraseña no válida. <a href='cambiar_pass.php' class='alert-link'>Volver al menú anterior</a>.
-						  </div>";
-	    		}
-	    		else {
-	    			if(!$passNuevoValido) {
-	    				echo "<div class='alert alert-warning' role='alert'>
-						  	<strong>¡Aviso!</strong> Contraseña no válida, debe de contener entre <strong>7</strong> y <strong>15 caracteres</strong>. <br>
-							Además, también debe de contener al menos <strong>una minúscula</strong>, <strong>una mayúscula</strong> y <strong>un dígito</strong>. <a href='cambiar_pass.php' class='alert-link'>Volver al menú anterior</a>.
-						  </div>";
-	    			}
-	    			else {
-	    				if(!$update) {
-	    					echo "<div class='alert alert-danger' role='alert'>
-		    			<strong>¡Error!</strong> Lo sentimos, ha ocurrido un fallo en el cambio de contraseña.<a href='cambiar_pass.php' class='alert-link'>Volver al menú anterior</a>.
-		    			</div>";
-	    				}
-	    				else {
-	    					echo "<div class='alert alert-success role='alert'>
-						  	<strong>¡Hecho!</strong> Contraseña cambiada con éxito. <a href='../index.php' class='alert-link'>Volver al índice</a>.
-						  </div>";
-	    				}
-	    			}
-	    		}
-	    		?>
-	    	</div>
-	    	</div>
-    	</div>
+        <div class="cabecera">
+            <h1>Proceso de cambio de contraseña</h1>
+            <small>La seguridad de usted ante todo.</small>
+        </div>
+        <div class="jumbotron2">
+        <div class="container">
+            <?php
+            if(!$camposRellenos) {
+                echo "<div class='alerta alerta-aviso' role='alert'>
+                        <strong>¡Aviso!</strong> Asegúrese de no dejar campos vacíos. <a href='cambiar_pass.php' class='alerta-link'>Volver al menú anterior</a>.
+                      </div>";
+            }
+            else if(!$autenticacion) {
+                echo "<div class='alerta alerta-peligro' role='alert'>
+                        <strong>¡Error!</strong> Combinación usuario/contraseña no válida. <a href='cambiar_pass.php' class='alerta-link'>Volver al menú anterior</a>.
+                      </div>";
+            }
+            else {
+                if(!$passNuevoValido) {
+                    echo "<div class='alerta alerta-aviso' role='alert'>
+                        <strong>¡Aviso!</strong> Contraseña no válida, debe de contener entre <strong>7</strong> y <strong>15 caracteres</strong>. <br>
+                        Además, también debe de contener al menos <strong>una minúscula</strong>, <strong>una mayúscula</strong> y <strong>un dígito</strong>. <a href='cambiar_pass.php' class='alerta-link'>Volver al menú anterior</a>.
+                      </div>";
+                }
+                else {
+                    if(!$update) {
+                        echo "<div class='alerta alerta-peligro' role='alert'>
+                    <strong>¡Error!</strong> Lo sentimos, ha ocurrido un fallo en el cambio de contraseña.<a href='cambiar_pass.php' class='alerta-link'>Volver al menú anterior</a>.
+                    </div>";
+                    }
+                    else {
+                        header("Location: ../index.php");
+                    }
+                }
+            }
+            ?>
+        </div>
+        </div>
     </div>
 </body>
 </html>

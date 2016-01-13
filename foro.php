@@ -26,19 +26,26 @@ else {
 <html lang="es-ES">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/rebel.png" />
     <!-- Font Awesone Icons -->
     <link rel="stylesheet" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="estilo/main.css">
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="scripts/menu.js"></script>
     <title>Foro - MiForo</title>
 </head>
-<body>
+<body onload="cargar()">
     <div class="container">
     	<div class="navmenu">
+    	    <div class="menu-bar">
+    		    <a href="#" onclick="desplegarMenu()"><span class="fa fa-bars fa-fw"></span>&nbsp;Menú</a>
+    		</div>
     		<a class="logo" href="index.php"><span class="fa fa-ra fa-fw" aria-hidden="true"></span>
     			MiForo
     		</a>
-  			<ul class="menu-izquierda">
+  			<ul class="menu-izquierda" id="menu">
 	    		<li>
 	      			<a href="index.php">Inicio</a>
 	    		</li>
@@ -98,16 +105,15 @@ else {
     						echo "<div class='columna-1-2'>";
     						echo "<a href='foro/listado.php?idTema=" . $fila["idTema"] ."'>" . utf8_encode($fila["titulo"]) . "</a>";
     						echo "</div>";
-    						echo "<div class='columna-1-4'>";
+    						echo "<div class='columna-1-4' style:'text-align: center'>";
     						echo  "<span>Autor: <strong>". utf8_encode($fila["usuario"]) . "</strong></span>";
     						echo "</div>";
-    						echo "<div class='columna-1-4'>";
+    						echo "<div class='columna-1-4' style:'text-align: center'>";
     						echo  "<span>Creado: <strong>". utf8_encode($fila["fecha"]) . "</strong></span>";
     						echo "</div>";
     						if($id == $fila["idUsuario"] || $tipo == "administrador") {
     							echo "<hr>";
-	    						echo "<div style='clear:both;'>";
-	    						echo "<div class='columna'>";
+	    						echo "<div class='columna-1-2' style:'text-align: center'>";
 	    						echo "<a href='foro/editar_tema.php?idTema=" . $fila["idTema"] . "'>
                                         <button class='boton-aviso'>
 										<span class='fa fa-pencil' aria-hidden='true'></span>&nbsp
@@ -120,7 +126,6 @@ else {
 										Eliminar tema
                                         </button>
 									  </a>";
-	    						echo "</div>";
 	    						echo "</div>";
     						}
     						echo "</li>";
